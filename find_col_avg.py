@@ -1,3 +1,6 @@
+### This script reads in data from simulation_results.csv (which bingmaps.py writes to) and then summarizes the data by the mean of the column and then writes it to 
+
+
 import pandas as pd
 import csv
 import choose_best

@@ -1,3 +1,9 @@
+### This script was meant to scrape the AAA webpage to get the daily national gas price average per state
+
+# It used beautiful soup to scrape the webpage, as well as python requsts module and used csv module to process and write the data
+
+# This feature was no longer needed and therefore moved to the archived code folder
+
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 import requests

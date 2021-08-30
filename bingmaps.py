@@ -1,6 +1,8 @@
+### This script calls Bing Maps API and sends a POST request to get all combinations of destinations and 
+
+
 import requests
 import pprint as pp
-import convert
 import json
 import choose_best
 import csv

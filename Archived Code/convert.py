@@ -1,3 +1,6 @@
+### This script was meant to read in a csv file (that was exported from Google Sheets) and then export the data in JSON format in the manner that Bing Maps API expects
+
+
 import csv 
 import json
 import time
@@ -14,7 +17,7 @@ def csv_to_json(csvFilePath, jsonFilePath):
             #add this python dict to json array
             jsonArray.append(row)
   
-    # return json.dumps(jsonArray, indent=4)
+    # writes to the entered destination json file the formatted csv file
     with open(jsonFilePath, 'w', encoding='utf-8') as jsonf: 
         jsonString = json.dumps(jsonArray, indent=4)
         jsonf.write(jsonString)
