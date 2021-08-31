@@ -1,3 +1,5 @@
+### this takes in the data returned by scrape_aaa and cleans and formats it to be able to be seen in google sheets
+
 import csv
 
 def do(file):
@@ -14,5 +16,3 @@ def do(file):
             csvwriter.writerow([address, price])
 
 files = ["px.csv", "wc.csv", "ta.csv", "pp.csv", "cn.csv", "wj.csv"]
-
-for f in files:

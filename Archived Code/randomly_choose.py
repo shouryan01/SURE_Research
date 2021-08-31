@@ -1,3 +1,6 @@
+### this script takes all the available gas station data (json format) and returns 10 files with randomly chosen gas stations with probability of being included ranging from 10-100%
+
+
 import json
 import random
 import pprint

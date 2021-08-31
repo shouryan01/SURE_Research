@@ -23,14 +23,16 @@ def csv_to_json(csvFilePath, jsonFilePath):
         jsonf.write(jsonString)
 
 
+## Previous uses of csv_to_json()
+
 # csv_to_json("canton_geocodes.csv", "canton_geocodes.json")
 # csv_to_json("nyc_geocodes.csv", "nyc_geocodes.json")
 # csv_to_json("la_geocodes.csv", "la_geocodes.json")
 # csv_to_json("chicago_geocodes.csv", "chicago_geocodes.json")
 # csv_to_json("houston_geocodes.csv", "houston_geocodes.json")
 
-csv_to_json("canton_marathon.csv", "canton_marathon.json")
-csv_to_json("canton_bp.csv", "canton_bp.json")
-csv_to_json("canton_exxonmobil.csv", "canton_exxonmobil.json")
-csv_to_json("canton_shell.csv", "canton_shell.json")
-csv_to_json("canton_sunoco.csv", "canton_sunoco.json")
+# csv_to_json("canton_marathon.csv", "canton_marathon.json")
+# csv_to_json("canton_bp.csv", "canton_bp.json")
+# csv_to_json("canton_exxonmobil.csv", "canton_exxonmobil.json")
+# csv_to_json("canton_shell.csv", "canton_shell.json")
+# csv_to_json("canton_sunoco.csv", "canton_sunoco.json")

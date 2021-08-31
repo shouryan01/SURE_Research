@@ -1,3 +1,7 @@
+### This script scrapes the gasbuddy website for gas stations, prices and distance from a certain geopoint
+### this script was abandoned because the aaa website with data from OPISnet was found 
+### this script was flawed because gasbuddy was highly protected from scraping by dynatrace and the data was imcomplete anyways
+
 import urllib.request, urllib.parse, urllib.error
 from bs4 import BeautifulSoup
 # import cloudscraper

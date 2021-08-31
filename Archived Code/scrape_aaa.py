@@ -1,3 +1,8 @@
+### this is the replacement for scraping the gasbuddy website. 
+### this script scrapes the aaa website which pulls data from OPISnet, the leading market research firm for accurate up to date gas prices
+### a selenium web handler was made and time interrupts were scheduled so as to not cause the website to block the requests
+### the gas station name, brand, address and price are written to the appropriate .csv file
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -14,7 +19,6 @@ url = "https://michigan.aaa.com/Safety/fuel-finder-redirect.aspx"
 options = webdriver.ChromeOptions()
 options.add_argument('--ignore-certificate-errors')
 options.add_argument('--incognito')
-# options.add_argument('user-agent=')
 driver = webdriver.Chrome('./chromedriver', chrome_options = options)
 driver.get(url)
 time.sleep(2)
@@ -25,7 +29,6 @@ def get_data(zip):
     text_input.send_keys(zip + Keys.ENTER)
     html = driver.page_source
 
-
     soup = BeautifulSoup(html, "html.parser")
     station_name = soup.find_all("a", id = lambda x: x and x.endswith("StationName"))
     station_brand = soup.find_all("span", id = lambda x: x and x.endswith("StationBrandName"))
@@ -33,30 +36,14 @@ def get_data(zip):
     station_city_state = soup.find_all("span", id = lambda x: x and x.endswith("StationCityState"))
     station_price = soup.find_all("span", id = lambda x: x and x.endswith("UnlPrice"))
     
-    # a
-    # span
-    # ctl00_ContentPlaceHolder1_searchResults_stationList_gvResults_ctl02_StationName
-    # ctl00_ContentPlaceHolder1_searchResults_stationList_gvResults_ctl02_StationBrandName
-    # ctl00_ContentPlaceHolder1_searchResults_stationList_gvResults_ctl02_StationAddress
-    # ctl00_ContentPlaceHolder1_searchResults_stationList_gvResults_ctl02_StationCityState
-    # ctl00_ContentPlaceHolder1_searchResults_stationList_gvResults_ctl02_UnlPrice
-
-    # ctl00_ContentPlaceHolder1_searchResults_stationList_gvResults_ctl03_StationName
-    # ctl00_ContentPlaceHolder1_searchResults_stationList_gvResults_ctl03_StationBrandName
-    # ctl00_ContentPlaceHolder1_searchResults_stationList_gvResults_ctl03_StationAddress
-    # ctl00_ContentPlaceHolder1_searchResults_stationList_gvResults_ctl15_StationName
-
-    # data = soup.find_all("td")
-    # for a in data:
-    #     print(a.text)
-
-
     with open("wj.csv", "a") as output_file:
         csvwriter = csv.writer(output_file)
 
         for (name, brand, address, city, price) in itertools.zip_longest(station_name, station_brand, station_address, station_city_state, station_price, fillvalue = "NA"):
             csvwriter.writerow([name.text, brand.text, str(address.text + ", " + city.text), price.text])
     
+
+# 11 zip codes from where to get the gas stations - aaa website only takes in zip codes as input
 ny = [11368, 11369, 11372, 11373, 11374, 11375, 11354, 11355, 11367, 11370, 11356]
 la = [90011, 90001, 90058, 90028, 90255, 90002, 90003, 90023, 90270, 90278, 90044]
 ch = [60629, 60707, 60607, 60634, 60171, 60160, 60165, 60659, 60164, 60131, 60645]
@@ -73,6 +60,7 @@ ca = [48187, 48154, 48150, 48167, 48170, 48152, 48185, 48135, 48335, 48186 ,4812
 
 sleeptime = random.uniform(2, 4)
 
+# just for testing purposes, to know which zip code is currently being worked on to fetch data
 for zipcode in wj:
     print("~")
     print(zipcode)
@@ -81,17 +69,3 @@ for zipcode in wj:
     get_data(str(zipcode))
     sleep(sleeptime)
     print("~")
-
-
-# all_divs = soup.find('div', {'id' : 'nameSearch'})
-# job_profiles = all_divs.find_all('a')
-  
-# # printing top ten job profiles
-# count = 0
-# for job_profile in job_profiles :
-#     print(job_profile.text)
-#     count = count + 1
-#     if(count == 10) :
-#         break
-  
-# driver.close() # closing the webdriver

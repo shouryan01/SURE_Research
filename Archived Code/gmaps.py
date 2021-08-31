@@ -1,3 +1,7 @@
+### attemped distance matrix calculation using Google Maps, however it was abandoned because the limit was only 100 origin-destination pairs
+### development was moved to bing maps because it allows for 2500 pairs
+
+
 import requests
 import pprint as pp
 
